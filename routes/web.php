@@ -16,6 +16,9 @@ use App\Http\Middleware\HelloMiddleware;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/hello/{person}', 'HelloController@index');
+
 Route::middleware([HelloMiddleware::class])->group( function () {
   
     Route::get('/hello', 'HelloController@index')->name('hello');
