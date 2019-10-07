@@ -11,9 +11,21 @@
 |
 */
 
+use App\Http\Middleware\HelloMiddleware;
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware([HelloMiddleware::class])->group( function () {
+  
+    Route::get('/hello', 'HelloController@index')->name('hello');
+    Route::get('/other', 'HelloController@other');
+    
+});
 
-Route::get('/hello/{id}', 'HelloController@index')->name('hello')->where('id','[0-9]+');
-Route::get('/other', 'HelloController@other');
+Route::namespace('Sample')->group( function () {
+  
+    Route::get('/sample', 'SampleController@index');
+    Route::get('/sample/other', 'SampleController@other');
+    
+});
