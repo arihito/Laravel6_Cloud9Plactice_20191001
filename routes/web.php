@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/hello/{id}', 'HelloController@index')->name('hello')->where('id','[0-9]+');
+Route::get('/other', 'HelloController@other');
